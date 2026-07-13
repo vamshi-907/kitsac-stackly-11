@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/template/pages/index.html</loc><priority>1.0</priority></url>
+  <url><loc>/template/pages/about.html</loc><priority>0.8</priority></url>
+  <url><loc>/template/pages/menu.html</loc><priority>0.9</priority></url>
+  <url><loc>/template/pages/menu-details.html</loc><priority>0.7</priority></url>
+  <url><loc>/template/pages/locations.html</loc><priority>0.9</priority></url>
+  <url><loc>/template/pages/catering.html</loc><priority>0.9</priority></url>
+  <url><loc>/template/pages/catering-details.html</loc><priority>0.7</priority></url>
+  <url><loc>/template/pages/booking.html</loc><priority>0.9</priority></url>
+  <url><loc>/template/pages/gallery.html</loc><priority>0.7</priority></url>
+  <url><loc>/template/pages/testimonials.html</loc><priority>0.6</priority></url>
+  <url><loc>/template/pages/blog.html</loc><priority>0.7</priority></url>
+  <url><loc>/template/pages/blog-details.html</loc><priority>0.6</priority></url>
+  <url><loc>/template/pages/contact.html</loc><priority>0.8</priority></url>
+  <url><loc>/template/pages/faq.html</loc><priority>0.6</priority></url>
+  <url><loc>/template/pages/merch-preview.html</loc><priority>0.5</priority></url>
+</urlset>

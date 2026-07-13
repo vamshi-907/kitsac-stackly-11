@@ -1,0 +1,14 @@
+/* RTL Support */
+[dir="rtl"] body { text-align: right; }
+[dir="rtl"] .sf-topbar .divider { margin: 0 12px; }
+[dir="rtl"] .sf-footer .social a { margin-left: 8px; margin-right: 0; }
+[dir="rtl"] .timeline { padding-left: 0; padding-right: 40px; }
+[dir="rtl"] .timeline::before { left: auto; right: 12px; }
+[dir="rtl"] .timeline .t-item::before { left: auto; right: -34px; }
+[dir="rtl"] .fc-1 { left: auto; right: -6%; }
+[dir="rtl"] .fc-2 { right: auto; left: -6%; }
+[dir="rtl"] .fc-3 { left: auto; right: 8%; }
+[dir="rtl"] .floating-card { flex-direction: row-reverse; }
+[dir="rtl"] .food-card .badge-best { left: auto; right: 14px; }
+[dir="rtl"] .food-card .fc-fav { right: auto; left: 14px; }
+[dir="rtl"] .pkg-badge { right: auto; left: 24px; }

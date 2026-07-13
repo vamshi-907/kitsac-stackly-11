@@ -1,0 +1,21 @@
+/* Responsive tweaks */
+@media (max-width: 992px) {
+  .sf-hero { padding: 40px 0 80px; }
+  .section { padding: 60px 0; }
+  .floating-card { display: none; }
+  .fc-3 { display: flex; bottom: 5%; left: 5%; }
+}
+@media (max-width: 768px) {
+  .sf-topbar { display: none; }
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 1.9rem; }
+  .section { padding: 48px 0; }
+  .btn-sf-primary, .btn-sf-secondary, .btn-sf-outline { padding: 12px 22px; font-size: .9rem; }
+  .sf-footer { padding: 60px 0 20px; }
+  .sf-footer .footer-bar { justify-content: center; text-align: center; }
+  .stat-card .num { font-size: 2rem; }
+}
+@media (max-width: 480px) {
+  .container, .container-xl-narrow { padding-left: 18px; padding-right: 18px; }
+  .pkg-card { padding: 28px 20px; }
+}
