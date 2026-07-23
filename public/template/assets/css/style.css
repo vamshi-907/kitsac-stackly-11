@@ -646,6 +646,13 @@ iframe[src*="maps.google"],
 iframe[src*="google.com/maps"],
 iframe[src*="openstreetmap"] { display: none !important; }
 
+/* Collapse any column that only contained a map placeholder,
+   and let its sibling expand to full width. */
+[class*="col-"]:has(> .map-placeholder:only-child) { display: none !important; }
+.row:has(> [class*="col-"] > .map-placeholder:only-child) > [class*="col-"]:not(:has(.map-placeholder)) {
+  flex: 0 0 100% !important; max-width: 100% !important;
+}
+
 /* Tighten section spacing — kill oversized whitespace above footer */
 .section { padding: 72px 0 !important; }
 .section-sm { padding: 40px 0 !important; }
