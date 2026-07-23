@@ -661,31 +661,62 @@ main > section:last-child { padding-bottom: 88px !important; }
 .sf-footer .footer-bar { margin-top: 40px !important; }
 .divider-diag { display: none !important; }
 
-/* Lemniscate (∞) media shape — applied to all image/media containers.
-   Uses an SVG mask so the shape scales with the container. */
+/* Lemniscate (∞) CARD shape — applied to the whole card silhouette
+   (image + content), NOT to the image alone. The image inside stays
+   rectangular; the outer card is clipped to an infinity shape. */
+.food-card,
+.blog-card,
+.merch-card,
+.review-card,
+.stat-card,
+.cat-tile,
+.pkg-card,
 .hero-media,
-.food-card .fc-media,
-.blog-card .bc-media,
-.merch-card .m-media,
 .gallery-grid .g-item {
   -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><path fill='black' d='M50,25 C50,5 5,5 5,25 C5,45 50,45 50,25 C50,5 95,5 95,25 C95,45 50,45 50,25 Z'/></svg>");
           mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><path fill='black' d='M50,25 C50,5 5,5 5,25 C5,45 50,45 50,25 C50,5 95,5 95,25 C95,45 50,45 50,25 Z'/></svg>");
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
-  border-radius: 0 !important;
-  background: transparent !important;
-  aspect-ratio: 2 / 1 !important;
+  -webkit-mask-position: center; mask-position: center;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
 }
-.hero-media { aspect-ratio: 5 / 3 !important; }
-.gallery-grid { columns: 2 !important; }
-.gallery-grid .g-item { margin-bottom: 24px !important; }
-.gallery-grid .g-item::after { display: none !important; }
 
-/* Ensure images fill the masked container */
-.food-card .fc-media img,
-.blog-card .bc-media img,
-.hero-media img,
-.merch-card .m-media img { width: 100%; height: 100%; object-fit: cover; }
+/* Give each masked card enough vertical room and horizontal padding
+   so image and text land inside the ∞ safe zone (middle band). */
+.food-card,
+.blog-card,
+.merch-card { padding: 0 12% !important; aspect-ratio: 5 / 4; display: flex; flex-direction: column; justify-content: center; }
+.food-card .fc-media,
+.blog-card .bc-media,
+.merch-card .m-media {
+  border-radius: 16px !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden;
+  background: var(--sf-surface);
+}
+.food-card .fc-body,
+.blog-card .bc-body,
+.merch-card .m-body { padding: 14px 4px 8px !important; }
+
+.stat-card,
+.review-card { padding: 40px 14% !important; aspect-ratio: 5 / 3; display: flex; flex-direction: column; justify-content: center; }
+.cat-tile { padding: 32px 14% !important; aspect-ratio: 5 / 4; }
+.pkg-card { padding: 40px 12% !important; aspect-ratio: 4 / 5; }
+
+.hero-media { aspect-ratio: 5 / 3 !important; border-radius: 0 !important; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.gallery-grid { columns: 2 !important; column-gap: 24px !important; }
+.gallery-grid .g-item { margin-bottom: 24px !important; aspect-ratio: 2 / 1; }
+.gallery-grid .g-item::after { display: none !important; }
+.gallery-grid .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Keep small icons/badges from being clipped by the card mask —
+   float them just outside the mask via wrapper class if needed. */
+.food-card .fc-fav,
+.food-card .badge-best { z-index: 3; }
 
 /* Floating hero cards — off on mobile, aligned on desktop */
 @media (max-width: 992px) { .floating-card { display: none !important; } }
