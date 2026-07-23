@@ -535,3 +535,175 @@ a:focus-visible, button:focus-visible, .form-control:focus-visible {
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ==========================================================================
+   BRAND REFRESH — Strict 2-color system, unified buttons, lemniscate media,
+   removed maps, tightened spacing. Overrides earlier tokens.
+   ========================================================================== */
+:root {
+  /* Only two brand colors from here on */
+  --sf-primary: #E83E8C;
+  --sf-primary-rgb: 232, 62, 140;
+  --sf-secondary: #1F1B24;
+  --sf-secondary-rgb: 31, 27, 36;
+
+  /* Neutralize former accents — all map to primary/secondary */
+  --sf-accent: var(--sf-primary);
+  --sf-highlight: var(--sf-primary);
+  --sf-success: var(--sf-secondary);
+  --sf-warning: var(--sf-secondary);
+  --sf-danger:  var(--sf-primary);
+
+  /* Flatten gradients to solids for consistency */
+  --sf-gradient-hero: var(--sf-primary);
+  --sf-gradient-warm: var(--sf-primary);
+  --sf-gradient-cool: var(--sf-secondary);
+  --sf-shadow-lg: 0 24px 60px rgba(var(--sf-primary-rgb),.22);
+  --sf-glow: 0 12px 28px rgba(var(--sf-primary-rgb),.45);
+}
+
+/* Kill text-gradient tricks — use solid primary */
+.text-gradient {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: var(--sf-primary) !important;
+}
+
+/* Unified button system: only Primary (solid pink) & Secondary (solid ink).
+   Same shape, size, weight, radius everywhere. */
+.btn-sf-primary,
+.btn-sf-secondary,
+.btn-sf-outline,
+.btn-sf-ghost {
+  padding: 14px 28px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-size: .95rem !important;
+  min-height: 48px;
+  border: 2px solid transparent !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn-sf-primary { background: var(--sf-primary) !important; color: #fff !important; }
+.btn-sf-primary:hover { background: var(--sf-secondary) !important; color: #fff !important; transform: translateY(-2px); }
+.btn-sf-secondary,
+.btn-sf-outline,
+.btn-sf-ghost {
+  background: transparent !important;
+  color: var(--sf-secondary) !important;
+  border-color: var(--sf-secondary) !important;
+}
+.btn-sf-secondary:hover,
+.btn-sf-outline:hover,
+.btn-sf-ghost:hover {
+  background: var(--sf-secondary) !important; color: #fff !important; transform: translateY(-2px);
+}
+.btn-sf-primary::after { display: none !important; }
+
+/* Remove decorative gradient background bleeds */
+.sf-hero,
+.page-hero,
+.sf-footer::before {
+  background-image: none !important;
+}
+.sf-hero { background: var(--sf-bg) !important; }
+.page-hero { background: var(--sf-surface) !important; }
+
+/* Stats & tiles: solid primary instead of gradient text/backgrounds */
+.stat-card .num {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: var(--sf-primary) !important;
+}
+.cat-tile .icon-wrap {
+  background: var(--sf-primary) !important;
+  box-shadow: 0 10px 24px rgba(var(--sf-primary-rgb),.28) !important;
+}
+.loc-card.today,
+.pkg-card.featured { background: var(--sf-secondary) !important; }
+.blog-card .bc-tag {
+  background: rgba(var(--sf-primary-rgb),.1) !important;
+  color: var(--sf-primary) !important;
+}
+.review-card .stars { color: var(--sf-primary) !important; }
+.pkg-card ul li i { color: var(--sf-primary) !important; }
+.timeline::before { background: var(--sf-primary) !important; }
+.pkg-badge { background: var(--sf-primary) !important; color: #fff !important; }
+.food-card .badge-best { background: var(--sf-secondary) !important; color: #fff !important; }
+.sf-topbar a:hover { color: var(--sf-primary) !important; }
+.sf-footer a:hover { color: var(--sf-primary) !important; }
+.sf-brand .flame { background: var(--sf-primary) !important; }
+.badge-soft.warn, .badge-soft.ok {
+  background: rgba(var(--sf-primary-rgb),.1) !important; color: var(--sf-primary) !important;
+}
+
+/* Remove maps & map placeholders everywhere */
+.map-placeholder,
+iframe[src*="maps.google"],
+iframe[src*="google.com/maps"],
+iframe[src*="openstreetmap"] { display: none !important; }
+
+/* Collapse any column that only contained a map placeholder,
+   and let its sibling expand to full width. */
+[class*="col-"]:has(> .map-placeholder:only-child) { display: none !important; }
+.row:has(> [class*="col-"] > .map-placeholder:only-child) > [class*="col-"]:not(:has(.map-placeholder)) {
+  flex: 0 0 100% !important; max-width: 100% !important;
+}
+
+/* Tighten section spacing — kill oversized whitespace above footer */
+.section { padding: 72px 0 !important; }
+.section-sm { padding: 40px 0 !important; }
+main > section:last-child { padding-bottom: 88px !important; }
+.sf-footer { padding: 64px 0 24px !important; }
+.sf-footer .footer-bar { margin-top: 40px !important; }
+.divider-diag { display: none !important; }
+
+/* Lemniscate (∞) media shape — applied to all image/media containers.
+   Uses an SVG mask so the shape scales with the container. */
+.hero-media,
+.food-card .fc-media,
+.blog-card .bc-media,
+.merch-card .m-media,
+.gallery-grid .g-item {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><path fill='black' d='M50,25 C50,5 5,5 5,25 C5,45 50,45 50,25 C50,5 95,5 95,25 C95,45 50,45 50,25 Z'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><path fill='black' d='M50,25 C50,5 5,5 5,25 C5,45 50,45 50,25 C50,5 95,5 95,25 C95,45 50,45 50,25 Z'/></svg>");
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  border-radius: 0 !important;
+  background: transparent !important;
+  aspect-ratio: 2 / 1 !important;
+}
+.hero-media { aspect-ratio: 5 / 3 !important; }
+.gallery-grid { columns: 2 !important; }
+.gallery-grid .g-item { margin-bottom: 24px !important; }
+.gallery-grid .g-item::after { display: none !important; }
+
+/* Ensure images fill the masked container */
+.food-card .fc-media img,
+.blog-card .bc-media img,
+.hero-media img,
+.merch-card .m-media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Floating hero cards — off on mobile, aligned on desktop */
+@media (max-width: 992px) { .floating-card { display: none !important; } }
+
+/* Center-align rule: whenever a section-title is centered, center its CTA row */
+.section-title + .text-center .btn-sf-primary,
+.section-title ~ .text-center,
+.text-center .btn-sf-primary,
+.text-center .btn-sf-secondary { margin-left: auto; margin-right: auto; }
+
+/* Dark mode parity for new palette */
+[data-theme="dark"] .btn-sf-secondary,
+[data-theme="dark"] .btn-sf-outline,
+[data-theme="dark"] .btn-sf-ghost {
+  color: #fff !important; border-color: #fff !important;
+}
+[data-theme="dark"] .btn-sf-secondary:hover,
+[data-theme="dark"] .btn-sf-outline:hover,
+[data-theme="dark"] .btn-sf-ghost:hover {
+  background: #fff !important; color: var(--sf-secondary) !important;
+}
