@@ -661,61 +661,49 @@ main > section:last-child { padding-bottom: 88px !important; }
 .sf-footer .footer-bar { margin-top: 40px !important; }
 .divider-diag { display: none !important; }
 
-/* Lemniscate (∞) CARD shape — applied to the whole card silhouette
-   (image + content), NOT to the image alone. The image inside stays
-   rectangular; the outer card is clipped to an infinity shape. */
+/* Normal rectangular card layout (lemniscate mask removed) */
 .food-card,
 .blog-card,
 .merch-card,
 .review-card,
 .stat-card,
 .cat-tile,
-.pkg-card,
-.hero-media,
-.gallery-grid .g-item {
-  /* Dumbbell lemniscate: two full lobes joined by a solid center bar
-     so image + content stay fully inside the visible shape. */
-  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><circle cx='25' cy='25' r='25' fill='black'/><circle cx='75' cy='25' r='25' fill='black'/><rect x='25' y='6' width='50' height='38' fill='black'/></svg>");
-          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><circle cx='25' cy='25' r='25' fill='black'/><circle cx='75' cy='25' r='25' fill='black'/><rect x='25' y='6' width='50' height='38' fill='black'/></svg>");
-  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
-  -webkit-mask-position: center; mask-position: center;
-  border: 0 !important;
-  box-shadow: none !important;
-  overflow: hidden !important;
+.pkg-card {
+  border-radius: 20px;
   background: #fff;
+  border: 1px solid var(--sf-border, rgba(0,0,0,0.08));
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
 }
 
-/* Give each masked card enough vertical room and horizontal padding
-   so image and text land inside the ∞ safe zone (middle band). */
 .food-card,
 .blog-card,
-.merch-card { padding: 24px 8% 28px !important; display: flex; flex-direction: column; gap: 12px; }
+.merch-card { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
 .food-card .fc-media,
 .blog-card .bc-media,
 .merch-card .m-media {
-  border-radius: 16px !important;
-  aspect-ratio: 16 / 9 !important;
+  border-radius: 14px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--sf-surface);
   position: relative;
 }
-.food-card .fc-body,
-.blog-card .bc-body,
-.merch-card .m-body { padding: 4px 2px 0 !important; }
+.food-card .fc-media img,
+.blog-card .bc-media img,
+.merch-card .m-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .stat-card,
-.review-card { padding: 36px 10% !important; min-height: 200px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-.cat-tile { padding: 36px 10% !important; min-height: 240px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
-.pkg-card { padding: 48px 10% !important; min-height: 520px; }
+.review-card { padding: 32px 24px; text-align: center; }
+.cat-tile { padding: 32px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pkg-card { padding: 40px 28px; }
 
-.hero-media { aspect-ratio: 5 / 3 !important; border-radius: 0 !important; }
+.hero-media { border-radius: 24px; overflow: hidden; }
 .hero-media img { width: 100%; height: 100%; object-fit: cover; }
 
-.gallery-grid { columns: 2 !important; column-gap: 24px !important; }
-.gallery-grid .g-item { margin-bottom: 24px !important; aspect-ratio: 2 / 1; }
-.gallery-grid .g-item::after { display: none !important; }
-.gallery-grid .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-grid { columns: 3; column-gap: 20px; }
+.gallery-grid .g-item { margin-bottom: 20px; border-radius: 16px; overflow: hidden; break-inside: avoid; }
+.gallery-grid .g-item img { width: 100%; height: auto; object-fit: cover; display: block; }
+@media (max-width: 768px) { .gallery-grid { columns: 2; } }
 
 /* Keep small icons/badges from being clipped by the card mask —
    float them just outside the mask via wrapper class if needed. */
